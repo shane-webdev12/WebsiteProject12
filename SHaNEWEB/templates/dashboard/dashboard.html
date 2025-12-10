@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" href="/static/styles/dashboard.css">
+</head>
+
+<body>
+
+<header class="headpanel">
+    <h1 style="padding: 20px;">WELCOME, {{ username }}!</h1>
+
+    <div class="menupanel">
+        <button class="menubtn" onclick="goTo('home')" style="background-color: #86aed3;">
+            <img src="/static/assets/home.png" alt="home" height="20">
+        </button>
+        <button class="menubtn" onclick="goTo('about')">ABOUT</button>
+        <button class="menubtn" onclick="goTo('projects')">PROJECTS</button>
+        <button class="menubtn" onclick="goTo('contacts')">CONTACTS</button>
+        <button class="menubtn" onclick="logOut()">LOG OUT</button>
+    </div>
+</header>
+
+<!-- HOME SECTION -->
+<div class="content" id="home" style="color: white;">
+    <div class="welcome">
+        <h1>WELCOME TO MY WEBSITE</h1>
+        <h3>
+            This website showcases my projects, information about me, and my contacts. 
+            It is designed to document my progress and demonstrate my skills across various subjects and fields.
+        </h3>
+    </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="content" id="about">
+    <div class="portfolio">
+        <h1>ABOUT</h1>
+
+        <h4>BACKGROUND</h4>
+        <p style="text-align: justify;">
+            Hi! I’m Shane S. Palanog, 19 years old. I’m from San Francisco, Agusan del Sur, which is my hometown. 
+            I am currently studying at Caraga State University Cabadbaran Campus, taking up 
+            a Bachelor of Science in Information Technology as a first-year student.
+        </p>
+
+        <h4>INTERESTS</h4>
+        <p style="text-align: justify;">
+            I’m interested in becoming an application and web developer or pursuing a career in cybersecurity in the future.
+        </p>
+
+        <h4>SKILLS</h4>
+        <p style="text-align: justify;">
+            As for my skills, I’m experienced in video editing, coding, and writing.
+        </p>
+    </div>
+</div>
+
+<!-- PROJECTS SECTION -->
+<div class="content" id="projects">
+    <div class="portfolio">
+        <h1>PROJECTS</h1>
+
+        <!-- PROJECT 1 -->
+        <img src="/static/assets/screen.png" alt="picture" width="400" height="200">
+        <h2>CREATING DATABASE</h2>
+        <p style="text-align: justify;">
+            I created a simple user authentication database using SQL, consisting of three tables designed 
+            to store and manage user information securely. The tables include fields for User ID, Username, 
+            and Password, each structured to ensure organized data storage and easy retrieval. I defined 
+            primary keys, set proper data types, and wrote SQL queries to insert, update, and retrieve 
+            user account information.
+        </p>
+
+        <!-- PROJECT 2 -->
+        <img src="/static/assets/sen.png" alt="picture" width="400" height="200">
+        <h2>CONSOLE GAME</h2>
+        <p style="text-align: justify;">
+            I developed an interactive Java console quiz game that tests users with multiple-choice 
+            questions and awards points based on accuracy. The program includes player registration, 
+            game mechanics, scoring rules, and a final results system. It uses classes, methods, 
+            conditionals, and loops to manage gameplay. The game displays questions, checks answers, 
+            tracks attempts, deducts points for mistakes, and calculates whether the player wins the 
+            top prize or a consolation reward. This project demonstrates my skills in Java fundamentals 
+            and logic-building.
+        </p>
+    </div>
+</div>
+
+<!-- CONTACTS SECTION -->
+<div class="content" id="contacts">
+    <div class="portfolio">
+        <h1>CONTACTS</h1>
+
+        <h4>CELLPHONE NUMBER</h4>
+        <p>🇵🇭 +63 952 600 1160</p>
+
+        <h4>EMAIL ADDRESS</h4>
+        <p>📧 shampalanog@gmail.com</p>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    function logOut() {
+        confirm("Are you sure you want to log out?") ? window.location.href = '/logout' : null;
+    }
+
+    function goTo(direct) {
+        window.location.href = `#${direct}`;
+    }
+
+    window.addEventListener('hashchange', () => {
+        const getHash = window.location.hash.replace("#", "");
+        document.querySelectorAll(".content").forEach(sec => {
+            sec.style.display = "none";
+        });
+        const target = document.getElementById(getHash);
+        if (target) target.style.display = "flex";
+    });
+
+    window.onload = () => {
+        window.location.hash = '#home';
+    };
+</script>
+
+</body>
+</html>
